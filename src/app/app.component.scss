@@ -1,0 +1,27 @@
+.app {
+  font: var(--font-middle);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  color: var(--color-primary);
+}
+
+.logo {
+  font: var(--font-logo);
+  color: var(--color-bold);
+}
+
+.title {
+  font: var(--font-title);
+}
+
+.big-text {
+  font: var(--font-big);
+}
+
+.middle-text {
+  font: var(--font-middle);
+}
+
+.little-text {
+  font: var(--font-little);
+}

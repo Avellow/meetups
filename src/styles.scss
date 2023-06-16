@@ -1,0 +1,35 @@
+@import 'assets/fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+:root {
+  --font-family-logo: "Open Sans Hebrew Condensed", "Times New Roman", serif;
+  --font-family-title: "Cherry Bomb", "Times New Roman", serif;
+  --font-family-main: "Open Sans", "Times New Roman", serif;
+
+  --font-logo: 700 56px/1.36 var(--font-family-logo);
+  --font-title: 24px/1 var(--font-family-title);
+  --font-big: 20px/1.35 var(--font-family-main);
+  --font-middle: 18px/1.39 var(--font-family-main);
+  --font-little: 14px/1.36 var(--font-family-main);
+
+  --color-default: #2C2C2C;
+  --color-secondary: #4C3F78;
+  --color-info: #008697;
+  --color-primary: #B4B4C0;
+  --color-accent: #B85526;
+  --color-background: #1E1E1E;
+  --color-bold: #E9E9E9;
+}
