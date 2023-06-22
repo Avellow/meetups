@@ -1,7 +1,7 @@
 <div class="meetup" [class.finished]="isMeetupFinished">
   <div class="title">{{ meetup.name }}</div>
   <div class="users-count">{{ meetup.users.length | numDecl: ['подписчик', 'подписчика', 'подписчиков'] }}</div>
-  <div class="date">{{ meetup.time | date: 'dd.mm.yy hh:mm' }}</div>
+  <div class="date">{{ meetup.time | date: 'dd.MM.yy hh:mm' }}</div>
   <div class="location" *ngIf="!isMeetupFinished; else finished">{{ meetup.location }}</div>
   <ng-template #finished>
     <div class="location finished">Проведено</div>
