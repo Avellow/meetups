@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MeetupModule } from './modules/meetup/meetup.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonIconModule } from './modules/button-icon/button-icon.module';
+import { ButtonModule } from './modules/button/button.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ButtonIconModule } from './modules/button-icon/button-icon.module';
     AppRoutingModule,
     MeetupModule,
     ButtonIconModule,
+    ButtonModule,
     NgbModule
   ],
   providers: [],

@@ -9,18 +9,23 @@
   <div class="middle-text">Средний текст средний текст</div>
   <div class="little-text">Маленький текст маленький текст</div>
   <hr>
-  <img src="../assets/icons/exit.svg" alt="exit">
-  <img src="../assets/icons/loupe.svg" alt="loupe">
-  <img src="../assets/icons/settings.svg" alt="settings">
-  <img src="../assets/icons/user-small.svg" alt="user-small">
-  <img src="../assets/icons/user.svg" alt="user">
+
+  <div [style]="{ display: 'flex', gap: '10px' }">
+    <app-button view="primary">Я пойду!</app-button>
+    <app-button view="secondary">Не смогу пойти</app-button>
+    <app-button view="warn">Удалить</app-button>
+    <app-button view="info">Создать митап</app-button>
+  </div>
+
   <hr>
-  <app-button-icon icon="user"></app-button-icon>
-  <app-button-icon icon="settings"></app-button-icon>
-  <app-button-icon icon="logout"></app-button-icon>
-  <app-button-icon icon="loupe"></app-button-icon>
-  <app-button-icon icon="cross" [bordered]="true"></app-button-icon>
-  <app-button-icon icon="pen" [bordered]="true"></app-button-icon>
+  <div [style]="{ display: 'flex', gap: '10px' }">
+    <app-button-icon icon="user"></app-button-icon>
+    <app-button-icon icon="settings"></app-button-icon>
+    <app-button-icon icon="logout"></app-button-icon>
+    <app-button-icon icon="loupe"></app-button-icon>
+    <app-button-icon icon="cross" [bordered]="true"></app-button-icon>
+    <app-button-icon icon="pen" [bordered]="true"></app-button-icon>
+  </div>
   <hr>
   <app-meetup></app-meetup>
 </div>
