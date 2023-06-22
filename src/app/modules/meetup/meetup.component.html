@@ -1,0 +1,50 @@
+<div class="meetup" [class.finished]="isMeetupFinished">
+  <div class="title">{{ meetup.name }}</div>
+  <div class="users-count">{{ meetup.users.length | numDecl: ['подписчик', 'подписчика', 'подписчиков'] }}</div>
+  <div class="date">{{ meetup.time | date: 'dd.mm.yy hh:mm' }}</div>
+  <div class="location" *ngIf="!isMeetupFinished; else finished">{{ meetup.location }}</div>
+  <ng-template #finished>
+    <div class="location finished">Проведено</div>
+  </ng-template>
+
+  <div class="description">
+
+    <div *ngIf="isCollapsed" [@grow]>
+      {{ description }}
+    </div>
+    <div *ngIf="!isCollapsed" [@grow]>
+      {{ description }}
+
+      <div class="details">
+        <h3>Целевая аудитория</h3>
+        <p>{{ meetup.target_audience }}</p>
+      </div>
+      <div class="details">
+        <h3>Что надо знать?</h3>
+        <p>{{ meetup.need_to_know }}</p>
+      </div>
+      <div class="details">
+        <h3>Что будет?</h3>
+        <p>{{ meetup.will_happen }}</p>
+      </div>
+      <div class="details">
+        <h3>Почему надо обязательно придти?</h3>
+        <p>{{ meetup.reason_to_come }}</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="author">
+    <img src="/assets/icons/user-small.svg" alt="user" width="25" height="25">
+    <span>{{ meetup.owner.fio }}</span>
+  </div>
+  <div class="btn-wrapper">
+    <!--TODO: не забыть ИСПОЛЬЗОВАТЬ КАСТОМНЫЕ КНОПКИ (вынести эти)
+    И ОТСЛЕЖИВАТЬ СОСТОЯНИЕ (ПОЙДУ-НЕ СМОГУ-РЕДАКТОРИВАТЬ)-->
+    <button class="btn btn-primary" *ngIf="!isMeetupFinished">Я пойду!</button>
+    <button class="btn btn-arrow" (click)="handleCollapse()">
+      <img class="arrow" [class.down]="isCollapsed" src="/assets/icons/arrow.svg" alt="arrow" width="32" height="26">
+    </button>
+  </div>
+</div>
