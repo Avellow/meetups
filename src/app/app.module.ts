@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MeetupModule } from './modules/meetup/meetup.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NumDeclPipe } from './pipes/num-decl.pipe';
+import { ButtonIconModule } from './modules/button-icon/button-icon.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import { NumDeclPipe } from './pipes/num-decl.pipe';
     BrowserModule,
     AppRoutingModule,
     MeetupModule,
+    ButtonIconModule,
     NgbModule
   ],
   providers: [],
