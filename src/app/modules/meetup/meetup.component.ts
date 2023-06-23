@@ -21,87 +21,94 @@ const desc = `
     et
     velit lobortis congue a in tellus.Fusce ultrices tortor est, sit amet volutpat orci elementum vitae.Aliquam eu
     porttitor lectus, tempus gravida erat.
- `
+ `;
 const meetup = {
   id: 1,
-  name: "Angular vs react",
+  name: 'Angular vs react',
   description: desc,
-  location: "Переговорка 4",
-  target_audience: "Разработчики, аналитики",
-  need_to_know: "Ядренную физику",
-  will_happen: "Будем готовить пиццу",
-  reason_to_come: "Надо",
-  time: "2025-06-13T06:14:13.094Z",
+  location: 'Переговорка 4',
+  target_audience: 'Разработчики, аналитики',
+  need_to_know: 'Ядренную физику',
+  will_happen: 'Будем готовить пиццу',
+  reason_to_come: 'Надо',
+  time: '2025-06-13T06:14:13.094Z',
   duration: 90,
   createdBy: 1,
   owner: {
     id: 1,
-    email: "pam@dundermifflin.com",
-    password: "password",
-    fio: "Ivan Ivanov"
+    email: 'pam@dundermifflin.com',
+    password: 'password',
+    fio: 'Ivan Ivanov',
   },
   users: [
     {
       id: 1,
-      email: "pam@dundermifflin.com",
-      password: "password",
-      fio: "password"
-    }, {
+      email: 'pam@dundermifflin.com',
+      password: 'password',
+      fio: 'password',
+    },
+    {
       id: 1,
-      email: "pam@dundermifflin.com",
-      password: "password",
-      fio: "password"
-    }, {
+      email: 'pam@dundermifflin.com',
+      password: 'password',
+      fio: 'password',
+    },
+    {
       id: 1,
-      email: "pam@dundermifflin.com",
-      password: "password",
-      fio: "password"
-    }, {
+      email: 'pam@dundermifflin.com',
+      password: 'password',
+      fio: 'password',
+    },
+    {
       id: 1,
-      email: "pam@dundermifflin.com",
-      password: "password",
-      fio: "password"
-    }, {
+      email: 'pam@dundermifflin.com',
+      password: 'password',
+      fio: 'password',
+    },
+    {
       id: 1,
-      email: "pam@dundermifflin.com",
-      password: "password",
-      fio: "password"
-    }
-  ]
-}
+      email: 'pam@dundermifflin.com',
+      password: 'password',
+      fio: 'password',
+    },
+  ],
+};
 // - ex to del ^
 
 //animation
 
 const closedStyle = {
   display: '-webkit-box',
-}
+};
 
 const customAnimation = [
-  trigger("grow", [
+  trigger('grow', [
     // Note the trigger name
-    transition(":enter", [
+    transition(':enter', [
       // :enter is alias to 'void => *'
       style({ height: 0 }),
-      animate(500, style({ height: "*" }))
+      animate(500, style({ height: '*' })),
     ]),
-    transition(":leave", [
+    transition(':leave', [
       // :leave is alias to '* => void'
-      animate(500, style({ height: 0 }))
-    ])
-  ])
-]
+      animate(500, style({ height: 0 })),
+    ]),
+  ]),
+];
 //end animation
 
 @Component({
   selector: 'app-meetup',
   templateUrl: './meetup.component.html',
   styleUrls: ['./meetup.component.scss'],
-  animations: customAnimation
+  animations: customAnimation,
 })
 export class MeetupComponent {
   meetup: IMeetup = meetup;
   isCollapsed = true;
+  isUserSubscribed = false; // temp
+
+  constructor() {}
 
   handleCollapse() {
     this.isCollapsed = !this.isCollapsed;
@@ -113,10 +120,16 @@ export class MeetupComponent {
       : this.meetup.description;
   }
 
-  get isMeetupFinished() {
+  get isMeetupFinished(): boolean {
     const now = new Date();
     const meetUpDate = new Date(this.meetup.time);
     return now.getTime() > meetUpDate.getTime();
   }
 
+  // РЕАЛИЗОВАТЬ когда напишу сервис пользователя. 
+  // где определять в списке или в карточке ??
+
+  handleSubscribe() { // настроить дебаунс ???
+    this.isUserSubscribed = !this.isUserSubscribed;
+  }
 }
