@@ -7,7 +7,7 @@
   </div>
   <div class="date">{{ meetup.time | date : "dd.MM.yy hh:mm" }}</div>
   <div class="location" *ngIf="!isMeetupFinished; else finished">
-    {{ meetup.location }}
+    {{ meetup.location || 'Локация не определена' }}
   </div>
   <ng-template #finished>
     <div class="location finished">Проведено</div>
@@ -15,26 +15,26 @@
 
   <div class="description">
     <div *ngIf="isCollapsed" [@grow]>
-      {{ description }}
+      {{ (meetup.description | reduceString: 180) || 'Разверните для подробной ифнормации' }}
     </div>
     <div *ngIf="!isCollapsed" [@grow]>
-      {{ description }}
+      {{ meetup.description }}
 
       <div class="details">
         <h3>Целевая аудитория</h3>
-        <p>{{ meetup.target_audience }}</p>
+        <p>{{ meetup.target_audience || "Уточните у организатора" }}</p>
       </div>
       <div class="details">
         <h3>Что надо знать?</h3>
-        <p>{{ meetup.need_to_know }}</p>
+        <p>{{ meetup.need_to_know || "Уточните у организатора" }}</p>
       </div>
       <div class="details">
         <h3>Что будет?</h3>
-        <p>{{ meetup.will_happen }}</p>
+        <p>{{ meetup.will_happen || "Уточните у организатора" }}</p>
       </div>
       <div class="details">
         <h3>Почему надо обязательно придти?</h3>
-        <p>{{ meetup.reason_to_come }}</p>
+        <p>{{ meetup.reason_to_come || "Уточните у организатора" }}</p>
       </div>
     </div>
   </div>
