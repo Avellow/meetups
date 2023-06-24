@@ -1,0 +1,5 @@
+<ul class="list" *ngIf="meetups$ | async as meetups">
+  <li *ngFor="let meetup of meetups; let i = index">
+    <app-meetup [meetup]="meetup"></app-meetup>
+  </li>
+</ul>

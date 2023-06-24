@@ -7,20 +7,27 @@ import { MeetupModule } from './modules/meetup/meetup.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonIconModule } from './modules/button-icon/button-icon.module';
 import { ButtonModule } from './modules/button/button.module';
+import { MeetupsListModule } from './modules/meetups-list/meetups-list.module';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MeetupModule,
+    MeetupsListModule,
     ButtonIconModule,
     ButtonModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    HttpClient,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
