@@ -11,6 +11,7 @@ import { MeetupsListModule } from './modules/meetups-list/meetups-list.module';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
+import { LoginModule } from './modules/login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
     ButtonModule,
     NgbModule,
     HttpClientModule,
+    LoginModule
   ],
   providers: [
     HttpClient,

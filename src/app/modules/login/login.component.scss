@@ -13,11 +13,11 @@
   color: var(--color-primary);
 }
 
-.form-signin input:focus + label {
+.form-signin input + label {
   color: var(--color-primary);
 }
 
-.form-signin input:focus + label::after {
+.form-signin input + label::after {
   background-color: rgba(255, 255, 255, 0);
 }
 
@@ -36,4 +36,14 @@
 
 .link {
   color: var(--color-info)
+}
+
+.form-floating {
+  position: relative;
+
+  .invalid-feedback {
+    position: absolute;
+    top: 53px;
+    left: 0px;
+  }
 }
