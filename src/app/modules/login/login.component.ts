@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RoutePathsEnum } from 'src/app/app-routing.module';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit{
   form!: FormGroup;
   submitted = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -46,13 +48,12 @@ export class LoginComponent implements OnInit{
           this.submitted = false;
           this.error = null;
           console.log(this.authService.user);
-          //this.router.navigate([]);
+          this.router.navigate([RoutePathsEnum.MEETUPS]);
         },
         error: (e) => {
           this.submitted = false;
           this.error = e;
         }
       })
-
   }
 }
