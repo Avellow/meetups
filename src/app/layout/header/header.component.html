@@ -1,0 +1,44 @@
+<header class="header">
+  <div class="brand">
+    <h1 class="title">MeetUps</h1>
+    <div class="logos">
+      <img
+        class="logo"
+        src="assets/icons/philosophy.svg"
+        alt="philosophy-logo"
+      />
+      <img class="logo" src="assets/icons/league.svg" alt="league-logo" />
+    </div>
+  </div>
+
+  <nav class="menu">
+    <ul class="links">
+      <li>
+        <a [routerLink]="paths.LOGIN" class="nav-link" routerLinkActive="active"
+          >Все митапы</a
+        >
+      </li>
+      <li>
+        <a [routerLink]="paths.MEETUPS" class="nav-link" routerLinkActive="active"
+          >Мои митапы</a
+        >
+      </li>
+      <li>
+        <a [routerLink]="paths.LOGIN" class="nav-link" routerLinkActive="active"
+          >Пользователи</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <ul class="controls">
+    <li><app-button-icon icon="user"></app-button-icon></li>
+    <li><app-button-icon icon="settings"></app-button-icon></li>
+    <li><app-button-icon icon="logout"></app-button-icon></li>
+  </ul>
+
+  
+</header>
+
+
+<router-outlet></router-outlet>
