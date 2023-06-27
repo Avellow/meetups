@@ -11,34 +11,50 @@
     </div>
   </div>
 
-  <nav class="menu">
+  <nav class="menu" *ngIf="authService.isAuth">
     <ul class="links">
       <li>
-        <a [routerLink]="paths.LOGIN" class="nav-link" routerLinkActive="active"
+        <a
+          [routerLink]="paths.MEETUPS"
+          class="nav-link"
+          routerLinkActive="active"
           >Все митапы</a
         >
       </li>
       <li>
-        <a [routerLink]="paths.MEETUPS" class="nav-link" routerLinkActive="active"
+        <a
+          [routerLink]="paths.MY_MEETUPS"
+          class="nav-link"
+          routerLinkActive="active"
           >Мои митапы</a
         >
       </li>
-      <li>
-        <a [routerLink]="paths.LOGIN" class="nav-link" routerLinkActive="active"
+      <li *ngIf="authService.isAdmin">
+        <a
+          [routerLink]="paths.DASHBOARD_USERS"
+          class="nav-link"
+          routerLinkActive="active"
           >Пользователи</a
         >
       </li>
     </ul>
   </nav>
 
-  <ul class="controls">
-    <li><app-button-icon icon="user"></app-button-icon></li>
+  <ul class="controls" *ngIf="authService.isAuth; else UnAuthControl">
     <li><app-button-icon icon="settings"></app-button-icon></li>
-    <li><app-button-icon icon="logout"></app-button-icon></li>
+    <li><app-button-icon icon="logout" (btnClick)="authService.logout()"></app-button-icon></li>
   </ul>
 
-  
+  <ng-template #UnAuthControl>
+    <ul class="controls">
+      <li>
+        <app-button-icon
+          icon="user"
+          [routerLink]="paths.LOGIN"
+        ></app-button-icon>
+      </li>
+    </ul>
+  </ng-template>
 </header>
-
 
 <router-outlet></router-outlet>

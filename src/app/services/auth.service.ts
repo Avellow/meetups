@@ -2,27 +2,48 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment as env } from 'src/environments/environment';
 import { catchError, map, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { RoutePathsEnum } from '../app-routing.module';
+import { IAuthResponseData, IUser } from './auth.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private routes: Router) { }
 
   login(email: string, password: string) {
     return this
       .http
-      .post<{ token: string }>(`${env.baseURL}/auth/login`, { email, password })
+      .post<IAuthResponseData>(`${env.baseURL}/auth/login`, { email, password })
       .pipe(
         map(this.handleSuccess),
         catchError(this.handleError),
       );
   }
 
+  get isAuth() {
+    return !!this.user;
+  }
+
+  private isAuthDateExpired(user: IUser): boolean {
+    const currentTime = Date.now() / 1000;
+    return currentTime > user.exp;
+  }
+
+  get isAdmin() {
+    const { user } = this;
+    if (user) {
+      return user.roles.some(role => role.id == 1);
+    } else {
+      return false;
+    }
+  }
+
   logout(): void {
     localStorage.removeItem(env.LS_API_KEY);
-    //this.routes.navigate([PagesPathEnum.LOGIN]);
+    this.routes.navigate([RoutePathsEnum.LOGIN]);
   }
 
   parseJwt(token: string) {
@@ -40,10 +61,16 @@ export class AuthService {
     return JSON.parse(jsonPayload);
   }
 
-  public get user() {
+  public get user(): IUser | null {
     const token = localStorage.getItem(env.LS_API_KEY);
     if (token) {
-      const user = this.parseJwt(token)
+      const user = this.parseJwt(token);
+
+      if (this.isAuthDateExpired(user)) {
+        this.logout();
+        return null;
+      }
+
       return user;
     } else {
       return null

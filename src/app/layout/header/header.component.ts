@@ -10,5 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent {
   paths = RoutePathsEnum;
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) { }
+  
 }

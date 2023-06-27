@@ -6,9 +6,10 @@
   background-color: var(--color-default);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  justify-content: space-between;
   padding: 20px 20px 20px 40px;
   gap: 10px;
-  position: relative;
+
 
   ul {
     display: flex;
@@ -49,6 +50,10 @@
   white-space: nowrap;
 }
 
+.nav-link {
+  padding-bottom: 15px;
+}
+
 .nav-link.active {
   position: relative;
 }
@@ -65,6 +70,7 @@
 
 .controls {
   justify-self: end;
+  grid-column: 3;
 }
 
 @include media-breakpoint-down(xl) {
