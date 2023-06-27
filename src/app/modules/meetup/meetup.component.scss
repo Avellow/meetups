@@ -13,7 +13,6 @@
 
 .title {
   grid-column: start / titleend;
-  white-space: nowrap;
   font: var(--font-meetup-title);
   color: var(--color-bold);
 }
@@ -150,6 +149,6 @@
 
   .btn-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 }
