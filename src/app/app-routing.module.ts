@@ -6,12 +6,14 @@ import { LayoutModule } from './layout/layout.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PagesModule } from './pages/pages.module';
 import { LayoutComponent } from './layout/layout.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 export enum RoutePathsEnum {
   LOGIN = 'login',
   MEETUPS = 'meetups',
   MY_MEETUPS = 'my-meetups',
   DASHBOARD_USERS = 'dashboard-users',
+
 }
 
 const routes: Routes = [
@@ -25,6 +27,7 @@ const routes: Routes = [
         component: MeetupsListComponent,
         canActivate: [authGuard],
       },
+      { path: RoutePathsEnum.DASHBOARD_USERS, component: UsersPageComponent }
     ],
   },
 ];
