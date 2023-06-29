@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MeetupsListComponent } from './modules/meetups-list/meetups-list.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { LayoutModule } from './layout/layout.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -8,6 +7,7 @@ import { PagesModule } from './pages/pages.module';
 import { LayoutComponent } from './layout/layout.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { adminGuard } from './shared/guards/admin.guard';
+import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-page.component';
 
 export enum RoutePathsEnum {
   LOGIN = 'login',
@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: RoutePathsEnum.MEETUPS,
-        component: MeetupsListComponent,
+        component: MeetupListPageComponent,
         canActivate: [authGuard],
       },
       {
