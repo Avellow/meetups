@@ -8,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { adminGuard } from './shared/guards/admin.guard';
 import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-page.component';
+import { MyMeetupsPageComponent } from './pages/my-meetups-page/my-meetups-page.component';
 
 export enum RoutePathsEnum {
   LOGIN = 'login',
@@ -21,13 +22,18 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: RoutePathsEnum.LOGIN, 
+      { 
+        path: RoutePathsEnum.LOGIN, 
         component: LoginPageComponent 
       },
       {
         path: RoutePathsEnum.MEETUPS,
         component: MeetupListPageComponent,
         canActivate: [authGuard],
+      },
+      {
+        path: RoutePathsEnum.MY_MEETUPS, 
+        component: MyMeetupsPageComponent
       },
       {
         path: RoutePathsEnum.DASHBOARD_USERS,

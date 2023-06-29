@@ -6,6 +6,8 @@ import { UsersPageComponent } from './users-page/users-page.component';
 import { MeetupListPageComponent } from './meetup-list-page/meetup-list-page.component';
 import { MeetupsListModule } from '../modules/meetups-list/meetups-list.module';
 import { ButtonIconModule } from '../modules/button-icon/button-icon.module';
+import { MyMeetupsPageComponent } from './my-meetups-page/my-meetups-page.component';
+import { ButtonModule } from '../modules/button/button.module';
 
 
 
@@ -15,13 +17,14 @@ import { ButtonIconModule } from '../modules/button-icon/button-icon.module';
     LoginPageComponent,
     UsersPageComponent,
     MeetupListPageComponent,
-
+    MyMeetupsPageComponent,
   ],
   imports: [
     CommonModule,
     LoginModule,
     MeetupsListModule,
-    ButtonIconModule
+    ButtonIconModule,
+    ButtonModule
   ],
   exports: [
     LoginPageComponent,

@@ -9,4 +9,6 @@
 
 main {
   flex: 1 1 0;
+  display: block;
+  padding: 20px calc(40 / 1440 * 100%);
 }
