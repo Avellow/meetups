@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  isLoading = false;
   error: string | null = null;
   form: FormGroup;
   submitted = false;

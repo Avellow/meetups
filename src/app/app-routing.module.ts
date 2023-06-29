@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
 import { MeetupsListComponent } from './modules/meetups-list/meetups-list.component';
 import { authGuard } from './shared/guards/auth.guard';
-import { HeaderComponent } from './layout/header/header.component';
 import { LayoutModule } from './layout/layout.module';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { PagesModule } from './pages/pages.module';
+import { LayoutComponent } from './layout/layout.component';
 
 export enum RoutePathsEnum {
   LOGIN = 'login',
   MEETUPS = 'meetups',
-  MY_MEETUPS = "my-meetups",
-  DASHBOARD_USERS = 'dashboard-users'
+  MY_MEETUPS = 'my-meetups',
+  DASHBOARD_USERS = 'dashboard-users',
 }
 
 const routes: Routes = [
   {
     path: '',
-    component: HeaderComponent,
+    component: LayoutComponent,
     children: [
-      { path: RoutePathsEnum.LOGIN, component: LoginComponent },
+      { path: RoutePathsEnum.LOGIN, component: LoginPageComponent },
       {
         path: RoutePathsEnum.MEETUPS,
         component: MeetupsListComponent,
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LayoutModule],
+  imports: [RouterModule.forRoot(routes), LayoutModule, PagesModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
