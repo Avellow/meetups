@@ -11,6 +11,7 @@ import { ButtonModule } from '../modules/button/button.module';
 import { RouterModule } from '@angular/router';
 import { CreateMeetupPageComponent } from './create-meetup-page/create-meetup-page.component';
 import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
+import { UsersListModule } from '../modules/users-list/users-list.module';
 
 
 
@@ -30,7 +31,8 @@ import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
     MeetupsListModule,
     ButtonIconModule,
     ButtonModule,
-    MeetupFormModule
+    MeetupFormModule,
+    UsersListModule
   ],
   exports: [
     LoginPageComponent,
