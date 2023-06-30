@@ -1,0 +1,86 @@
+@import 'bootstrap/scss/_functions';
+@import 'bootstrap/scss/_variables';
+@import 'bootstrap/scss/mixins/_breakpoints';
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 10px calc(130/1440 * 100%);
+  margin-bottom: 50px;
+
+  .field {
+    display: grid;
+    grid-template-columns: 130px [startinput] 1fr [end];
+    align-items: center;
+    gap: 30px;
+
+    input, textarea {
+      grid-column: startinput / end;
+      border: 3px solid var(--color-secondary);
+      border-radius: 3px;
+      background-color: var(--color-default);
+      color: var(--color-bold);
+      padding: 12px 20px
+    }
+
+    .form-control::placeholder {
+      color: var(--color-primary);
+      opacity: 0.4;
+    }
+
+    .field-name {
+      justify-self: flex-start;
+      display: block;
+      max-width: 130px;
+      margin: 0;
+    }
+  
+    .short {
+      max-width: 520px;
+    }
+  
+    .middle-height {
+      height: 100px;
+    }
+  
+    .high {
+      height: 180px;
+    }
+  }
+
+  .date-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .date {
+      input {
+        width: 260px;
+      }
+    }
+
+    .date:last-of-type {
+      grid-template-columns: minmax(1fr, 130px);
+    }
+  }
+
+
+  @include media-breakpoint-down(md) {
+    .field {
+      display: block;
+    }
+
+    .field-name {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.form-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}

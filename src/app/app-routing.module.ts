@@ -9,12 +9,16 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { adminGuard } from './shared/guards/admin.guard';
 import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-page.component';
 import { MyMeetupsPageComponent } from './pages/my-meetups-page/my-meetups-page.component';
+import { MeetupFormComponent } from './modules/meetup-form/meetup-form.component';
+import { ButtonModule } from './modules/button/button.module';
+import { CreateMeetupPageComponent } from './pages/create-meetup-page/create-meetup-page.component';
 
 export enum RoutePathsEnum {
   LOGIN = 'login',
   MEETUPS = 'meetups',
   MY_MEETUPS = 'my-meetups',
   DASHBOARD_USERS = 'dashboard-users',
+  CREATE_MEETUP = 'create-meetup'
 }
 
 const routes: Routes = [
@@ -32,8 +36,19 @@ const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: RoutePathsEnum.MY_MEETUPS, 
-        component: MyMeetupsPageComponent
+        path: RoutePathsEnum.MY_MEETUPS,
+        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            component: MyMeetupsPageComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: RoutePathsEnum.CREATE_MEETUP, 
+            component: CreateMeetupPageComponent,
+          }
+        ]
       },
       {
         path: RoutePathsEnum.DASHBOARD_USERS,
@@ -45,7 +60,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LayoutModule, PagesModule],
+  imports: [RouterModule.forRoot(routes), LayoutModule, PagesModule, ButtonModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

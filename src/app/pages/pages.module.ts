@@ -8,6 +8,9 @@ import { MeetupsListModule } from '../modules/meetups-list/meetups-list.module';
 import { ButtonIconModule } from '../modules/button-icon/button-icon.module';
 import { MyMeetupsPageComponent } from './my-meetups-page/my-meetups-page.component';
 import { ButtonModule } from '../modules/button/button.module';
+import { RouterModule } from '@angular/router';
+import { CreateMeetupPageComponent } from './create-meetup-page/create-meetup-page.component';
+import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
 
 
 
@@ -18,13 +21,16 @@ import { ButtonModule } from '../modules/button/button.module';
     UsersPageComponent,
     MeetupListPageComponent,
     MyMeetupsPageComponent,
+    CreateMeetupPageComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
     LoginModule,
     MeetupsListModule,
     ButtonIconModule,
-    ButtonModule
+    ButtonModule,
+    MeetupFormModule
   ],
   exports: [
     LoginPageComponent,

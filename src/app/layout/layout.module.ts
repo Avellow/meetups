@@ -15,7 +15,7 @@ import { LayoutComponent } from './layout.component';
   imports: [
     CommonModule,
     RouterModule,
-    ButtonIconModule
+    ButtonIconModule,
   ], 
   exports: [
     HeaderComponent
