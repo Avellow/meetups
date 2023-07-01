@@ -1,5 +1,10 @@
 <ul class="list" *ngIf="meetups.length">
-  <li *ngFor="let meetup of meetups; let i = index">
-    <app-meetup [meetup]="meetup"></app-meetup>
+  <li *ngFor="let meetup of meetups">
+    <app-meetup
+      [meetup]="meetup"
+      [editable]="isOwner(meetup)"
+      [isUserSubscribed]="isSubscribed(meetup)"
+      (onSubscribeChange)="handleChangeSubscribtion(meetup)"
+    ></app-meetup>
   </li>
 </ul>

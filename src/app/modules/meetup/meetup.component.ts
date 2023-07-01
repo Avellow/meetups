@@ -1,21 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IMeetup } from './meetup.interface';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
 
 // animation
 const customAnimation = [
   trigger('grow', [
-    // Note the trigger name
     transition(':enter', [
-      // :enter is alias to 'void => *'
       style({ height: 0 }),
       animate(500, style({ height: '*' })),
     ]),
     transition(':leave', [
-      // :leave is alias to '* => void'
       animate(500, style({ height: 0 })),
     ]),
   ]),
+  trigger('blockInitialAnimation', [
+    transition(':enter', [])
+  ])
 ];
 //end animation
 
@@ -27,9 +28,12 @@ const customAnimation = [
 })
 export class MeetupComponent {
   @Input() meetup!: IMeetup;
-  
+  @Input() editable: boolean = false;
+  @Input() isUserSubscribed = false;
+
+  @Output() onSubscribeChange = new EventEmitter(); 
+
   isCollapsed = true;
-  isUserSubscribed = false; // temp
 
   constructor() {}
 
@@ -43,10 +47,7 @@ export class MeetupComponent {
     return now.getTime() > meetUpDate.getTime();
   }
 
-  // РЕАЛИЗОВАТЬ когда напишу сервис пользователя. 
-  // где определять в списке или в карточке ??
-
-  handleSubscribe() { // настроить дебаунс ???
-    this.isUserSubscribed = !this.isUserSubscribed;
+  handleChangeSubscribtion() {
+    this.onSubscribeChange.emit();
   }
 }

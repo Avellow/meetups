@@ -7,15 +7,18 @@
   </div>
   <div class="date">{{ meetup.time | date : "dd.MM.yy hh:mm" }}</div>
   <div class="location" *ngIf="!isMeetupFinished; else finished">
-    {{ meetup.location || 'Локация не определена' }}
+    {{ meetup.location || "Локация не определена" }}
   </div>
   <ng-template #finished>
     <div class="location finished">Проведено</div>
   </ng-template>
 
-  <div class="description">
+  <div class="description" [@blockInitialAnimation]>
     <div *ngIf="isCollapsed" [@grow]>
-      {{ (meetup.description | reduceString: 180) || 'Разверните для подробной ифнормации' }}
+      {{
+        (meetup.description | reduceString : 180) ||
+          "Разверните для подробной ифнормации"
+      }}
     </div>
     <div *ngIf="!isCollapsed" [@grow]>
       {{ meetup.description }}
@@ -44,18 +47,24 @@
     <span>{{ meetup.owner.fio }}</span>
   </div>
   <div class="btn-wrapper">
-    <!--TODO: не забыть ИСПОЛЬЗОВАТЬ КАСТОМНЫЕ КНОПКИ (вынести эти)
-    И ОТСЛЕЖИВАТЬ СОСТОЯНИЕ (ПОЙДУ-НЕ СМОГУ-РЕДАКТОРИВАТЬ)-->
-    <div *ngIf="!isMeetupFinished" [style]="{ display: 'inline-block' }">
-      <app-button
-        view="primary"
-        *ngIf="!isUserSubscribed; else unSubscription"
-        (btnClick)="handleSubscribe()"
+    <app-button
+      *ngIf="!isMeetupFinished && editable"
+      view="primary"
+      [routerLink]="[meetup.id]"
+      >Редактировать</app-button
+    >
+
+    <div
+      *ngIf="!isMeetupFinished && !editable"
+      [style]="{ display: 'inline-block' }"
+    >
+      <app-button view="primary" *ngIf="!isUserSubscribed; else unSubscription"
+        (btnClick)="handleChangeSubscribtion()"
         >Я пойду!</app-button
       >
-      <!--настроить дебаунс ???-->
+
       <ng-template #unSubscription>
-        <app-button view="secondary" (btnClick)="handleSubscribe()">
+        <app-button view="secondary" (btnClick)="handleChangeSubscribtion()">
           Не смогу пойти
         </app-button>
       </ng-template>

@@ -1,3 +1,5 @@
+import { IMeetup } from '../modules/meetup/meetup.interface';
+
 export function isArraysEqual(array1: Object[], array2: Object[]): boolean {
   if (array1.length !== array2.length) {
     return false;
@@ -35,4 +37,8 @@ function isDeepEqual(obj1: any, obj2: any): boolean {
   }
 
   return true;
+}
+
+export const sortMeetupsByDate = (meetups: IMeetup[]) => {
+  return meetups.sort((a, b) => +new Date(b.time) - +new Date(a.time));
 }

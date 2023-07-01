@@ -4,6 +4,7 @@ import { MeetupComponent } from './meetup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ButtonModule } from '../button/button.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ButtonModule } from '../button/button.module';
     CommonModule,
     BrowserAnimationsModule,
     PipesModule,
-    ButtonModule
+    ButtonModule,
+    RouterModule
   ],
   exports: [MeetupComponent]
 })

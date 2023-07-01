@@ -2,41 +2,49 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { IMeetup } from '../meetup/meetup.interface';
 import { MeetupsService } from 'src/app/services/meetups.service';
-import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-meetups-list',
   templateUrl: './meetups-list.component.html',
-  styleUrls: ['./meetups-list.component.scss']
+  styleUrls: ['./meetups-list.component.scss'],
 })
-export class MeetupsListComponent  {
-  @Input() meetups: IMeetup[] = []
-  
+export class MeetupsListComponent {
+  @Input() meetups: IMeetup[] = [];
 
-  constructor() { }
-  
+  constructor(
+    public authService: AuthService,
+    private meetupsService: MeetupsService
+  ) {}
 
-  handleSubscribe(meetup: IMeetup) {
-    // подписка на митап
-  }
+  handleChangeSubscribtion(meetup: IMeetup) {
+    const { user } = this.authService;
 
-  handleUnsubscribe(meetup: IMeetup) {
-    // отписка отписка от митапа
+    if (user) {
+      this.meetupsService.subscribeUserToMeetup(
+        meetup,
+        user.id,
+        this.isSubscribed(meetup)
+      );
+    }
   }
 
   isSubscribed(meetup: IMeetup): boolean {
-    // подписан ли пользователь
-    // const userId = this.auth.user.id
-    
-    // return meetup.users.some(({ id }) => id === userId); 
+    const { user } = this.authService;
+    const { users } = meetup;
+
+    if (user) {
+      return users.some((subscribedUser) => subscribedUser.id == user.id);
+    }
+
     return false;
   }
 
   isOwner(meetup: IMeetup): boolean {
-    // владелец ли
-    // const userId = this.auth.user.id
-    
-    // return meetup.owner.id === userId;
+    const { user } = this.authService;
+    if (user) {
+      return meetup.owner.id == user.id;
+    }
     return false;
   }
 }

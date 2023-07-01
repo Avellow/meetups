@@ -9,7 +9,6 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { adminGuard } from './shared/guards/admin.guard';
 import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-page.component';
 import { MyMeetupsPageComponent } from './pages/my-meetups-page/my-meetups-page.component';
-import { MeetupFormComponent } from './modules/meetup-form/meetup-form.component';
 import { ButtonModule } from './modules/button/button.module';
 import { CreateMeetupPageComponent } from './pages/create-meetup-page/create-meetup-page.component';
 
@@ -18,7 +17,8 @@ export enum RoutePathsEnum {
   MEETUPS = 'meetups',
   MY_MEETUPS = 'my-meetups',
   DASHBOARD_USERS = 'dashboard-users',
-  CREATE_MEETUP = 'create-meetup'
+  CREATE_MEETUP = 'create-meetup',
+  EDIT_MEETUP = ':id'
 }
 
 const routes: Routes = [
@@ -32,8 +32,20 @@ const routes: Routes = [
       },
       {
         path: RoutePathsEnum.MEETUPS,
-        component: MeetupListPageComponent,
         canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            component: MeetupListPageComponent,
+            pathMatch: 'full'
+          },
+          {
+            path: RoutePathsEnum.EDIT_MEETUP,
+            component: CreateMeetupPageComponent,
+            pathMatch: 'full',
+            canActivate: [adminGuard]
+          }
+        ]
       },
       {
         path: RoutePathsEnum.MY_MEETUPS,
@@ -47,6 +59,10 @@ const routes: Routes = [
           {
             path: RoutePathsEnum.CREATE_MEETUP, 
             component: CreateMeetupPageComponent,
+          },
+          {
+            path: RoutePathsEnum.EDIT_MEETUP,
+            component: CreateMeetupPageComponent
           }
         ]
       },
