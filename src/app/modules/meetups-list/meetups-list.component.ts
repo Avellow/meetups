@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { meetups } from './temp-data';
 import { IMeetup } from '../meetup/meetup.interface';
 import { MeetupsService } from 'src/app/services/meetups.service';
-import { Observable } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-meetups-list',
   templateUrl: './meetups-list.component.html',
   styleUrls: ['./meetups-list.component.scss']
 })
-export class MeetupsListComponent implements OnInit{
-  meetupsSync: IMeetup[] = meetups;
-
-  meetups$!: Observable<IMeetup[]>;
-
-  /* сервис по работе с карточками, сервис auth (нужен пользователь) */
-  constructor(private meetupsServ: MeetupsService) {}
+export class MeetupsListComponent  {
+  @Input() meetups: IMeetup[] = []
   
-  ngOnInit(): void {
-    this.meetups$ = this.meetupsServ.getMeetups()
-  }
 
+  constructor() { }
+  
 
   handleSubscribe(meetup: IMeetup) {
     // подписка на митап
