@@ -10,6 +10,8 @@ import { MeetupsService } from 'src/app/services/meetups.service';
 })
 export class MeetupListPageComponent implements OnInit, OnDestroy {
   meetups: IMeetup[];
+  private _filter: string = '';
+
   private onDestroy$: Subject<void> = new Subject();
 
   constructor(private meetupsServ: MeetupsService) {
@@ -27,5 +29,21 @@ export class MeetupListPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  handleChangeSearch(value: string) {
+    this._filter = value;
+  }
+
+  get filteredMeetups() {
+    return this.meetups.filter(meetup => {
+      const values = Object.values(meetup);
+      return values.some(value => {
+        if (typeof value == 'string') {
+          return value.toLowerCase().trim().includes(this._filter.toLowerCase().trim())
+        }
+        return false;
+      })
+    });
   }
 }

@@ -13,6 +13,7 @@ import { CreateMeetupPageComponent } from './create-meetup-page/create-meetup-pa
 import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
 import { UsersListModule } from '../modules/users-list/users-list.module';
 import { EditMeetupPageComponent } from './edit-meetup-page/edit-meetup-page.component';
+import { SearchInputModule } from '../modules/search-input/search-input.module';
 
 
 
@@ -34,7 +35,8 @@ import { EditMeetupPageComponent } from './edit-meetup-page/edit-meetup-page.com
     ButtonIconModule,
     ButtonModule,
     MeetupFormModule,
-    UsersListModule
+    UsersListModule,
+    SearchInputModule,
   ],
   exports: [
     LoginPageComponent,

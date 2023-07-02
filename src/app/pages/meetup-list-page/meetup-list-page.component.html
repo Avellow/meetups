@@ -1,10 +1,2 @@
-<div class="search">
-  <input
-    type="input"
-    class="form-control"
-    placeholder="Название, ключевое слово, дата"
-  />
-  <app-button-icon class="btn" icon="loupe"></app-button-icon>
-</div>
-
-<app-meetups-list class="list" [meetups]="meetups"></app-meetups-list>
+<app-search-input (onValueChange)="handleChangeSearch($event)"></app-search-input>
+<app-meetups-list class="list" [meetups]="filteredMeetups"></app-meetups-list>

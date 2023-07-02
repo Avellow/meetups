@@ -71,24 +71,36 @@ export class MeetupFormComponent implements OnInit {
     const getDefaultDate = this._getDefaultDate.bind(this);
     const getDefaultTime = this._getDefaultTime.bind(this);
 
-    return this.fb.group({
+    const form = this.fb.group({
       name: [getDefaultValue('name'), [Validators.required]],
       date: [getDefaultDate(), [Validators.required]],
       time: [getDefaultTime(), [Validators.required]],
       location: [getDefaultValue('location'), [Validators.required]],
       duration: [getDefaultValue('duration'), [Validators.required]],
-      description: [getDefaultValue('description'), [Validators.required]],
-      target_audience: [
-        getDefaultValue('target_audience'),
-        [Validators.required],
-      ],
-      need_to_know: [getDefaultValue('need_to_know'), [Validators.required]],
-      will_happen: [getDefaultValue('will_happen'), [Validators.required]],
-      reason_to_come: [
-        getDefaultValue('reason_to_come'),
-        [Validators.required],
-      ],
+      description: ['', [Validators.required]],
+      target_audience: ['', [Validators.required]],
+      need_to_know: ['', [Validators.required]],
+      will_happen: ['', [Validators.required]],
+      reason_to_come: ['', [Validators.required]],
     });
+    // временно для тог
+    form.controls.description.setValue(
+      getDefaultValue('description') as string
+    );
+    form.controls.target_audience.setValue(
+      getDefaultValue('target_audience') as string
+    );
+    form.controls.need_to_know.setValue(
+      getDefaultValue('need_to_know') as string
+    );
+    form.controls.will_happen.setValue(
+      getDefaultValue('will_happen') as string
+    );
+    form.controls.reason_to_come.setValue(
+      getDefaultValue('reason_to_come') as string
+    );
+
+    return form;
   }
 
   handleSubmit() {
@@ -118,16 +130,15 @@ export class MeetupFormComponent implements OnInit {
     this.router.navigate([RoutePathsEnum.MY_MEETUPS]);
   }
 
-
   handleDelete() {
     if (this.meetup) {
-      this.meetupsService.deleteMeetup(this.meetup.id)
+      this.meetupsService.deleteMeetup(this.meetup.id);
     }
     this.router.navigate([RoutePathsEnum.MY_MEETUPS]);
   }
 
   handleCancel() {
-    this.router.navigate([RoutePathsEnum.MY_MEETUPS])
+    this.router.navigate([RoutePathsEnum.MY_MEETUPS]);
   }
 
   isValidField(name: string) {
