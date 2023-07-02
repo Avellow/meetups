@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { CreateMeetupPageComponent } from './create-meetup-page/create-meetup-page.component';
 import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
 import { UsersListModule } from '../modules/users-list/users-list.module';
+import { EditMeetupPageComponent } from './edit-meetup-page/edit-meetup-page.component';
 
 
 
@@ -23,6 +24,7 @@ import { UsersListModule } from '../modules/users-list/users-list.module';
     MeetupListPageComponent,
     MyMeetupsPageComponent,
     CreateMeetupPageComponent,
+    EditMeetupPageComponent,
   ],
   imports: [
     CommonModule,

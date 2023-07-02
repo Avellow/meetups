@@ -14,7 +14,7 @@ export interface IMeetup {
   users: IUser[]
 }
 
-interface IOwner {
+export interface IOwner {
   id: number
   email: string
   password: string

@@ -42,6 +42,7 @@ export class MeetupsListComponent {
 
   isOwner(meetup: IMeetup): boolean {
     const { user } = this.authService;
+    
     if (user) {
       return meetup.owner.id == user.id;
     }
