@@ -1,3 +1,8 @@
 <button class="btn" [class.bordered]="bordered" [disabled]="isDisabled">
-  <img [class.action]="isAction" [src]="link" [alt]="icon" (click)="onClick()">
+  <img
+    [class.action]="isAction"
+    [src]="link"
+    [alt]="icon"
+    (click)="onClick()"
+  />
 </button>

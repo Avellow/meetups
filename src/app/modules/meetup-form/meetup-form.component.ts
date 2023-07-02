@@ -2,9 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IMeetup } from '../meetup/meetup.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
 import { MeetupsService } from 'src/app/services/meetups.service';
-import { IRequestBody } from './meetup-form.interface';
 import { RoutePathsEnum } from 'src/app/app-routing.module';
 
 @Component({

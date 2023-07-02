@@ -9,7 +9,6 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { adminGuard } from './shared/guards/admin.guard';
 import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-page.component';
 import { MyMeetupsPageComponent } from './pages/my-meetups-page/my-meetups-page.component';
-import { ButtonModule } from './modules/button/button.module';
 import { CreateMeetupPageComponent } from './pages/create-meetup-page/create-meetup-page.component';
 import { EditMeetupPageComponent } from './pages/edit-meetup-page/edit-meetup-page.component';
 

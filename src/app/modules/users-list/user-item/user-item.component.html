@@ -3,20 +3,23 @@
     <input
       type="email"
       class="form-control"
+      name="email"
       formControlName="email"
+      autocomplete="email"
       [class.is-invalid]="!isValidField('email')"
     />
   </div>
   <div class="field">
     <input
       type="password"
+      name="password"
       class="form-control"
       [class.is-invalid]="!isValidField('password')"
       formControlName="password"
     />
   </div>
   <div class="field">
-    <select class="form-select" formControlName="role">
+    <select class="form-select" formControlName="role" name="select">
       <option value="user" selected>user</option>
       <option value="admin">admin</option>
     </select>

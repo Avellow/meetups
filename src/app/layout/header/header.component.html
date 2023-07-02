@@ -40,12 +40,12 @@
     </ul>
   </nav>
 
-  <ul class="controls" *ngIf="authService.isAuth; else UnAuthControl">
+  <ul class="controls" *ngIf="authService.isAuth; else unAuthControl">
     <li><app-button-icon icon="settings"></app-button-icon></li>
     <li><app-button-icon icon="logout" (btnClick)="authService.logout()"></app-button-icon></li>
   </ul>
 
-  <ng-template #UnAuthControl>
+  <ng-template #unAuthControl>
     <ul class="controls">
       <li>
         <app-button-icon

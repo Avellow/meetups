@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, delay, distinctUntilChanged, fromEvent, map, of, switchMap, tap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  tap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-search-input',
@@ -9,7 +13,7 @@ import { debounceTime, delay, distinctUntilChanged, fromEvent, map, of, switchMa
 })
 export class SearchInputComponent {
   @Output() onValueChange = new EventEmitter();
-  
+
   isSearching = false;
 
   searchControl = new FormControl();
@@ -18,7 +22,7 @@ export class SearchInputComponent {
     this.searchControl.valueChanges
       .pipe(
         distinctUntilChanged(),
-        tap(() => this.isSearching = true),
+        tap(() => (this.isSearching = true)),
         debounceTime(600),
         tap((value: string) => this.handleChange(value))
       )
@@ -33,5 +37,4 @@ export class SearchInputComponent {
   handleChange(value: string) {
     this.onValueChange.emit(value);
   }
-
 }

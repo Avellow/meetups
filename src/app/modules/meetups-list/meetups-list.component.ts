@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IMeetup } from '../meetup/meetup.interface';
 import { MeetupsService } from 'src/app/services/meetups.service';
