@@ -7,4 +7,5 @@
     [formControl]="searchControl"
   />
   <app-button-icon class="btn" icon="loupe"></app-button-icon>
+  <app-spinner *ngIf="isSearching" class="search-spinner"></app-spinner>
 </form>

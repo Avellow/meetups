@@ -10,17 +10,23 @@ import { debounceTime, delay, distinctUntilChanged, fromEvent, map, of, switchMa
 export class SearchInputComponent {
   @Output() onValueChange = new EventEmitter();
   
+  isSearching = false;
+
   searchControl = new FormControl();
 
   constructor() {
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(600),
         distinctUntilChanged(),
+        tap(() => this.isSearching = true),
+        debounceTime(600),
         tap((value: string) => this.handleChange(value))
       )
-      .subscribe((results: any) => {
-        console.log('Результаты поиска:', results);
+      .subscribe({
+        next: (results: any) => {
+          console.log('Результаты поиска:', results);
+          this.isSearching = false;
+        },
       });
   }
 
