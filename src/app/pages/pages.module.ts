@@ -14,6 +14,8 @@ import { MeetupFormModule } from '../modules/meetup-form/meetup-form.module';
 import { UsersListModule } from '../modules/users-list/users-list.module';
 import { EditMeetupPageComponent } from './edit-meetup-page/edit-meetup-page.component';
 import { SearchInputModule } from '../modules/search-input/search-input.module';
+import { HomeComponent } from './home/home.component';
+import { SpinnerModule } from '../shared/spinner/spinner.module';
 
 
 
@@ -26,6 +28,7 @@ import { SearchInputModule } from '../modules/search-input/search-input.module';
     MyMeetupsPageComponent,
     CreateMeetupPageComponent,
     EditMeetupPageComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -37,10 +40,7 @@ import { SearchInputModule } from '../modules/search-input/search-input.module';
     MeetupFormModule,
     UsersListModule,
     SearchInputModule,
+    SpinnerModule
   ],
-  exports: [
-    LoginPageComponent,
-    UsersPageComponent
-  ]
 })
 export class PagesModule { }

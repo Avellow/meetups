@@ -13,6 +13,7 @@ export class LoginComponent {
   error: string | null = null;
   form: FormGroup;
   submitted = false;
+  routePaths = RoutePathsEnum;
 
   constructor(private authService: AuthService, private router: Router) {
     this.form = new FormGroup({

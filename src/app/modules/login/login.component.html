@@ -36,12 +36,15 @@
       </div>
 
       <div class="actions">
-        <a class="link">How to create account?</a>
-        <app-button 
-          type="submit" 
+        <a class="link" [routerLink]="routePaths.HOME"
+          >How to create account?</a
+        >
+        <app-button
+          type="submit"
           view="primary"
           [isDisabled]="form.invalid || submitted"
-        >Log in</app-button>
+          >Log in</app-button
+        >
       </div>
     </form>
   </div>

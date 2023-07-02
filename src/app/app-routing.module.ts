@@ -11,8 +11,10 @@ import { MeetupListPageComponent } from './pages/meetup-list-page/meetup-list-pa
 import { MyMeetupsPageComponent } from './pages/my-meetups-page/my-meetups-page.component';
 import { CreateMeetupPageComponent } from './pages/create-meetup-page/create-meetup-page.component';
 import { EditMeetupPageComponent } from './pages/edit-meetup-page/edit-meetup-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export enum RoutePathsEnum {
+  HOME = '',
   LOGIN = 'login',
   MEETUPS = 'meetups',
   MY_MEETUPS = 'my-meetups',
@@ -26,6 +28,11 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full'
+      },
       { 
         path: RoutePathsEnum.LOGIN, 
         component: LoginPageComponent 

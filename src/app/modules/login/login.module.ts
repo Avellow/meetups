@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { ButtonModule } from '../button/button.module';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ButtonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
   ],
   exports: [
