@@ -31,7 +31,10 @@ export class MeetupsService {
   }
 
   loadMeetups() {
-
+    if (!this.authService.isAuth) {
+      this._stopDataUpdate();
+      return;
+    }
     this.http
       .get<IMeetup[]>(`${environment.baseURL}/meetup`)
       .pipe(retry(3), map(sortMeetupsByDate))

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { isArraysEqual } from './helpers';
 import { IUser } from '../modules/users-list/user-item/user.interface';
 import { IUserInfo } from './users-service.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +16,17 @@ export class UsersService {
   private _intervalId: ReturnType<typeof setInterval> | null = null;
   public isLoadingSubj$ = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authServ: AuthService) {
     this.loadUsers();
     this._startDataUpdate();
   }
 
   loadUsers() {
+    if (!this.authServ.isAuth) {
+      this._stopDataUpdate();
+      return;
+    }
+
     this.http.get<IUser[]>(`${environment.baseURL}/user`)
     .pipe(
       map(users => users.filter(user =>
