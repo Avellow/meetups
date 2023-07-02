@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IMeetup } from '../modules/meetup/meetup.interface';
-import { Observable, Subject, map, retry } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, retry } from 'rxjs';
 import { isArraysEqual, sortMeetupsByDate } from './helpers';
 import { AuthService } from './auth.service';
 import { IRequestBody } from '../modules/meetup-form/meetup-form.interface';
@@ -14,7 +14,7 @@ export class MeetupsService {
   public meetups: IMeetup[] = [];
   private _intervalId: ReturnType<typeof setInterval> | null = null;
   public meetupsSubject$ = new Subject<IMeetup[]>();
-  public isLoadingSubj$ = new Subject<boolean>();
+  public isLoadingSubj$ = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.loadMeetups();
@@ -31,10 +31,7 @@ export class MeetupsService {
   }
 
   loadMeetups() {
-    if (!this.authService.isAuth) {
-      this._stopDataUpdate();
-      return;
-    }
+   
     this.http
       .get<IMeetup[]>(`${environment.baseURL}/meetup`)
       .pipe(retry(3), map(sortMeetupsByDate))
@@ -47,6 +44,7 @@ export class MeetupsService {
           }
         },
         error: (e) => console.log(e),
+        complete: () => this.isLoadingSubj$.next(false)
       });
   }
 

@@ -1,2 +1,5 @@
 <app-search-input (onValueChange)="handleChangeSearch($event)"></app-search-input>
 <app-meetups-list class="list" [meetups]="filteredMeetups"></app-meetups-list>
+<div class="modal-spinner" *ngIf="isMeetupsLoading">
+  <app-spinner class="spinner"></app-spinner>
+</div>

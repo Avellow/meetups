@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject, forkJoin, map } from 'rxjs';
+import { BehaviorSubject, Subject, forkJoin, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { isArraysEqual } from './helpers';
 import { IUser } from '../modules/users-list/user-item/user.interface';
 import { IUserInfo } from './users-service.model';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +13,14 @@ export class UsersService {
   public users: IUser[] = [];
   public usersSubject$ = new Subject<IUser[]>();
   private _intervalId: ReturnType<typeof setInterval> | null = null;
-  public isLoadingSubj$ = new Subject<boolean>();
+  public isLoadingSubj$ = new BehaviorSubject<boolean>(true);
 
-  constructor(private http: HttpClient, private authServ: AuthService) {
+  constructor(private http: HttpClient) {
     this.loadUsers();
     this._startDataUpdate();
   }
 
   loadUsers() {
-    if (!this.authServ.isAuth) {
-      this._stopDataUpdate();
-      return;
-    }
-
     this.http.get<IUser[]>(`${environment.baseURL}/user`)
     .pipe(
       map(users => users.filter(user =>
@@ -43,6 +37,7 @@ export class UsersService {
         }
       },
       error: (e) => console.log(e),
+      complete: () => this.isLoadingSubj$.next(false)
     });
   }
 
