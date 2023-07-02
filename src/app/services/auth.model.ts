@@ -2,7 +2,7 @@ export interface IAuthResponseData {
   token: string;
 }
 
-export interface IUser {
+export interface IAuthUser {
   email: string
   id: number
   roles: IRole[]

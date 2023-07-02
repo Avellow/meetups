@@ -1,8 +1,24 @@
 <ul class="users-list">
-  <li>
-    <app-user-item></app-user-item>
+  <li *ngFor="let user of users; let i = index">
+    <app-user-item [user]="user"></app-user-item>
   </li>
-  <li>
-    <app-user-item></app-user-item>
+  <li *ngIf="isAddingNewUser">
+    <app-add-user></app-add-user>
   </li>
 </ul>
+
+<app-button
+  class="user-btn"
+  view="warn"
+  *ngIf="isAddingNewUser; else new"
+  (btnClick)="handleChangeIsAddingNewUser()"
+  >Отменить</app-button
+>
+<ng-template #new>
+  <app-button
+    class="user-btn"
+    view="info"
+    (btnClick)="handleChangeIsAddingNewUser()"
+    >Создать</app-button
+  >
+</ng-template>

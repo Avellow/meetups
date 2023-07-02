@@ -4,7 +4,7 @@ import { environment as env } from 'src/environments/environment';
 import { catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { RoutePathsEnum } from '../app-routing.module';
-import { IAuthResponseData, IUser } from './auth.model';
+import { IAuthResponseData, IAuthUser } from './auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class AuthService {
     return !!this.user;
   }
 
-  private isAuthDateExpired(user: IUser): boolean {
+  private isAuthDateExpired(user: IAuthUser): boolean {
     const currentTime = Date.now() / 1000;
     return currentTime > user.exp;
   }
@@ -44,6 +44,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(env.LS_API_KEY);
     this.routes.navigate([RoutePathsEnum.LOGIN]);
+    window.location.reload();
   }
 
   parseJwt(token: string) {
@@ -61,7 +62,7 @@ export class AuthService {
     return JSON.parse(jsonPayload);
   }
 
-  public get user(): IUser | null {
+  public get user(): IAuthUser | null {
     const token = localStorage.getItem(env.LS_API_KEY);
     if (token) {
       const user = this.parseJwt(token);

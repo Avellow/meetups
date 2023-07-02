@@ -1,5 +1,6 @@
-<form class="user-card" [formGroup]="form" [id]="user?.id">
+<form class="adding-card" [formGroup]="form">
   <div class="field">
+    <label>Email</label>
     <input
       type="email"
       class="form-control"
@@ -8,25 +9,24 @@
     />
   </div>
   <div class="field">
+    <label>Пароль</label>
     <input
       type="password"
       class="form-control"
-      [class.is-invalid]="!isValidField('password')"
       formControlName="password"
+      [class.is-invalid]="!isValidField('password')"
     />
   </div>
   <div class="field">
-    <select class="form-select" formControlName="role">
-      <option value="user" selected>user</option>
-      <option value="admin">admin</option>
-    </select>
+    <label>ФИО</label>
+    <input
+      type="fio"
+      class="form-control"
+      formControlName="fio"
+      [class.is-invalid]="!isValidField('fio')"
+    />
   </div>
   <div class="field user-action">
-    <app-button-icon
-      icon="cross"
-      [bordered]="true"
-      (btnClick)="handleRemove()"
-    ></app-button-icon>
     <app-button-icon
       icon="pen"
       [bordered]="true"
