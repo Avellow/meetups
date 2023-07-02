@@ -23,3 +23,23 @@
     scale: 2;
   }
 }
+
+.dark-theme {
+  --color-default: #2C2C2C;
+  --color-secondary: #4C3F78;
+  --color-info: #008697;
+  --color-primary: #B4B4C0;
+  --color-accent: #B85526;
+  --color-background: #1E1E1E;
+  --color-bold: #E9E9E9;
+}
+
+.light-theme {
+  --color-default: #F5F5F5;
+  --color-secondary: #9d81cd;
+  --color-info: #00ACC1;
+  --color-primary: #a0a0a1;
+  --color-accent: #FF5722;
+  --color-background: #FFFFFF;
+  --color-bold: #212121;
+}

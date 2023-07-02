@@ -24,14 +24,6 @@ select {
   --font-big: 20px/1.35 var(--font-family-main);
   --font-middle: 18px/1.39 var(--font-family-main);
   --font-little: 14px/1.36 var(--font-family-main);
-
-  --color-default: #2C2C2C;
-  --color-secondary: #4C3F78;
-  --color-info: #008697;
-  --color-primary: #B4B4C0;
-  --color-accent: #B85526;
-  --color-background: #1E1E1E;
-  --color-bold: #E9E9E9;
 }
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

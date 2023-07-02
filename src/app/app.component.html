@@ -1,4 +1,8 @@
-<div class="app">
+<div
+  class="app"
+  [class.light-theme]="!themeServ.isDarkTheme"
+  [class.dark-theme]="themeServ.isDarkTheme"
+>
   <div class="modal-spinner" *ngIf="isAppLoading">
     <app-spinner class="spinner"></app-spinner>
   </div>

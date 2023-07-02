@@ -41,8 +41,18 @@
   </nav>
 
   <ul class="controls" *ngIf="authService.isAuth; else unAuthControl">
-    <li><app-button-icon icon="settings"></app-button-icon></li>
-    <li><app-button-icon icon="logout" (btnClick)="authService.logout()"></app-button-icon></li>
+    <li>
+      <app-button-icon
+        icon="settings"
+        (btnClick)="toggleShowSettings()"
+      ></app-button-icon>
+    </li>
+    <li>
+      <app-button-icon
+        icon="logout"
+        (btnClick)="authService.logout()"
+      ></app-button-icon>
+    </li>
   </ul>
 
   <ng-template #unAuthControl>
@@ -55,4 +65,14 @@
       </li>
     </ul>
   </ng-template>
+
+  <div class="theme-toggler" *ngIf="showSettings">
+    <input
+      type="checkbox"
+      id="darkmode-toggle"
+      (change)="toggleTheme()"
+      [defaultChecked]="themeServ.isDarkTheme"
+    />
+    <label for="darkmode-toggle"></label>
+  </div>
 </header>
