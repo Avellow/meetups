@@ -13,6 +13,7 @@ export class UsersService {
   public users: IUser[] = [];
   public usersSubject$ = new Subject<IUser[]>();
   private _intervalId: ReturnType<typeof setInterval> | null = null;
+  public isLoadingSubj$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
     this.loadUsers();
@@ -53,6 +54,7 @@ export class UsersService {
 
   updateInfo(id: number, newInfo: IUserInfo, role: string) {
     this._stopDataUpdate();
+    this.isLoadingSubj$.next(true);
 
     const userInfo = {
       email: newInfo.email,
@@ -83,12 +85,13 @@ export class UsersService {
         this.loadUsers();
       },
       error: (e) => console.log(e),
-      complete: () => this._startDataUpdate(),
+      complete: this._handleCompleteTask,
     });
   }
 
   deleteUser(id: number) {
     this._stopDataUpdate();
+    this.isLoadingSubj$.next(true);
 
     this.http.delete(`${environment.baseURL}/user/${id}`)
     .subscribe({
@@ -96,13 +99,13 @@ export class UsersService {
         this.loadUsers();
       },
       error: (e) => console.log(e),
-      complete: () => this._startDataUpdate(),
+      complete: this._handleCompleteTask,
     });
   }
 
   addNewUser(user: IUserInfo) {
     this._stopDataUpdate();
-
+    this.isLoadingSubj$.next(true);
 
     this.http
       .post(`${environment.baseURL}/auth/registration`, user)
@@ -111,7 +114,12 @@ export class UsersService {
           this.loadUsers();
         },
         error: (e) => console.log(e),
-        complete: () => this._startDataUpdate(),
+        complete: this._handleCompleteTask,
       })
   }
+
+  private _handleCompleteTask = () => {
+    this.isLoadingSubj$.next(false);
+    this._startDataUpdate();
+}
 }

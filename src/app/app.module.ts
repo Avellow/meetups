@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { LoginModule } from './modules/login/login.module';
 import { MeetupFormModule } from './modules/meetup-form/meetup-form.module';
+import { SpinnerModule } from './shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { MeetupFormModule } from './modules/meetup-form/meetup-form.module';
     NgbModule,
     HttpClientModule,
     LoginModule,
-    MeetupFormModule
+    MeetupFormModule,
+    SpinnerModule
   ],
   providers: [
     HttpClient,

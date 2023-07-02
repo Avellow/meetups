@@ -14,6 +14,7 @@ export class MeetupsService {
   public meetups: IMeetup[] = [];
   private _intervalId: ReturnType<typeof setInterval> | null = null;
   public meetupsSubject$ = new Subject<IMeetup[]>();
+  public isLoadingSubj$ = new Subject<boolean>();
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.loadMeetups();
@@ -30,6 +31,7 @@ export class MeetupsService {
   }
 
   loadMeetups() {
+
     this.http
       .get<IMeetup[]>(`${environment.baseURL}/meetup`)
       .pipe(retry(3), map(sortMeetupsByDate))
@@ -64,6 +66,7 @@ export class MeetupsService {
   ) {
     const { id: idMeetup } = meetup;
 
+    this.isLoadingSubj$.next(true);
     this._stopDataUpdate();
 
     let requestObs$: Observable<IMeetup>;
@@ -97,7 +100,7 @@ export class MeetupsService {
           this.meetupsSubject$.next(meetups);
         },
         error: (e) => console.log(e),
-        complete: () => this._startDataUpdate(),
+        complete: this._handleCompleteTask,
       });
   }
 
@@ -107,19 +110,19 @@ export class MeetupsService {
 
   createMeetup(requestBody: IRequestBody) {
     this._stopDataUpdate();
-
+    this.isLoadingSubj$.next(true);
     this.http
       .post<IMeetup>(`${environment.baseURL}/meetup`, requestBody)
       .subscribe({
         next: () => this.loadMeetups(),
         error: (e) => console.log(e),
-        complete: () => this._startDataUpdate(),
+        complete: this._handleCompleteTask,
       })
   }
 
   editMeetup(requestBody: IRequestBody, meetupId: number) {
     this._stopDataUpdate();
-
+    this.isLoadingSubj$.next(true);
     this.http
       .put<IMeetup>(`${environment.baseURL}/meetup/${meetupId}`, requestBody)
       .pipe(
@@ -139,7 +142,7 @@ export class MeetupsService {
           this.meetupsSubject$.next(meetups);
         },
         error: (e) => console.log(e),
-        complete: () => this._startDataUpdate(),
+        complete: this._handleCompleteTask
       });
   }
 
@@ -158,7 +161,12 @@ export class MeetupsService {
         this.meetupsSubject$.next(meetups);
       },
       error: (e) => console.log(e),
-      complete: () => this._startDataUpdate(),
+      complete: this._handleCompleteTask,
     });
+  }
+
+  private _handleCompleteTask = () => {
+      this.isLoadingSubj$.next(false);
+      this._startDataUpdate();
   }
 }
