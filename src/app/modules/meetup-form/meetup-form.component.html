@@ -140,6 +140,7 @@
       (btnClick)="handleSubmit()"
       type="submit"
       [isDisabled]="form.invalid"
+      [isDisabled]="form.pristine"
     >
       Сохранить
     </app-button>
