@@ -1,0 +1,51 @@
+<div class="d-flex align-items-center py-4 m-auto">
+  <div class="form-signin w-100 m-auto">
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          [class.is-invalid]="!isValidField('email')"
+          id="floatingInput"
+          placeholder="name@example.com"
+          name="email"
+          formControlName="email"
+        />
+        <label for="floatingInput">Login</label>
+        <div *ngIf="!isValidField('email')" class="invalid-feedback">
+          Please enter a valid email.
+        </div>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          [class.is-invalid]="!isValidField('password')"
+          id="floatingPassword"
+          placeholder="Password"
+          name="password"
+          formControlName="password"
+        />
+        <label for="floatingPassword">Password</label>
+        <div *ngIf="!isValidField('password')" class="invalid-feedback">
+          Please enter a valid password (min 4 symbols)
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="link" [routerLink]="routePaths.HOME"
+          >How to create account?</a
+        >
+        <app-button
+          type="submit"
+          view="primary"
+          [isDisabled]="form.invalid || submitted"
+          >Log in</app-button
+        >
+      </div>
+    </form>
+  </div>
+</div>

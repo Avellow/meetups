@@ -1,0 +1,25 @@
+.btn {
+  border-radius: 5px;
+  border: none;
+  font: var(--font-middle);
+  color: var(--color-bold);
+  width: 160px;
+  height: 50px;
+}
+
+.primary {
+  background-color: var(--color-secondary);
+}
+
+.secondary {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.warn {
+  background-color: var(--color-accent);
+}
+
+.info {
+  background-color: var(--color-info);
+}

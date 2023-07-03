@@ -1,0 +1,14 @@
+<ul class="list" *ngIf="meetups.length; else notFound">
+  <li *ngFor="let meetup of meetups">
+    <app-meetup
+      [meetup]="meetup"
+      [editable]="isOwner(meetup)"
+      [isUserSubscribed]="isSubscribed(meetup)"
+      (onSubscribeChange)="handleChangeSubscribtion(meetup)"
+    ></app-meetup>
+  </li>
+</ul>
+
+<ng-template #notFound>
+  <h2 class="not-found">Ничего не найдено</h2>
+</ng-template>

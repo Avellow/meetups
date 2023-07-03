@@ -1,0 +1,155 @@
+.meetup {
+  display: grid;
+  grid-template-columns: 
+    [start] auto [titleend] 15px [substart] auto [subend] 1fr [descend] 20px [buttonstart] auto [datestart] auto [end];
+  padding: 15px 0 0 18px; 
+  background-color: var(--color-default);
+  border: 0.3px solid var(--color-primary);
+  white-space: pre-line;
+}
+
+.meetup.finished {
+  opacity: 0.5;
+}
+
+.title {
+  grid-column: start / titleend;
+  font: var(--font-meetup-title);
+  color: var(--color-bold);
+}
+
+.users-count {
+  grid-column: substart / subend;
+  font: var(--font-middle);
+  color: var(--color-accent);
+}
+
+.date {
+  grid-column: datestart / end;
+  white-space: nowrap;
+  
+  padding: 0 10px 0 0;
+
+  font: var(--font-meetup-title);
+}
+
+.location {
+  grid-column: datestart / end;
+  white-space: nowrap;
+  font: var(--font-little);
+}
+.location.finished {
+  color: var(--color-accent);
+}
+
+.description {
+  overflow: hidden;
+  grid-column: start / descend;
+  margin-bottom: 18px;
+}
+
+.author {
+  grid-column: start / subend;
+  white-space: nowrap;
+  margin-bottom: 15px;
+
+  span {
+    margin-left: 10px;
+    color: var(--color-bold)
+  }
+}
+
+.btn-wrapper {
+  grid-column: buttonstart / end;
+  white-space: nowrap;
+  justify-self: end;
+  align-self: flex-end;
+
+  .btn {
+    height: 50px;
+    width: 160px;
+  }
+
+  .btn-primary {
+    background-color: var(--color-secondary);
+    border: none;
+  }
+
+  .btn-arrow {
+    width: 70px;
+    background-color: var(--color-accent);
+    margin-left: 10px;
+
+    .arrow {
+      transition: all 0.3s ease-out;
+    }
+
+    .arrow.down {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.details {
+  margin: 18px 0;
+
+  h3 {
+    font: var(--font-big);
+    color: var(--color-bold);
+    margin-bottom: 5px;
+  }
+  p {
+    font: var(--font-middle);
+    padding-left: 10px;
+    margin: 0;
+  }
+}
+
+.details:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .meetup {
+    grid-template-columns: 
+      [start] 1fr [middle] 1fr [end];
+    ;
+  }
+  .title {
+    grid-column: start / middle;
+  }
+  .date {
+    grid-column: middle / end;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .users-count {
+    grid-column: start / middle;
+  }
+  .location {
+    grid-column: middle / end;
+    justify-self: end;
+    padding-right: 10px;
+  }
+  .description {
+    grid-column: start / end;
+    margin-top: 15px;
+  }
+  .author {
+    grid-column: start / end;
+  }
+  .btn-wrapper {
+    grid-column: start / end;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .meetup {
+    display: block;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

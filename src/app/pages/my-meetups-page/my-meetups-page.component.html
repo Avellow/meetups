@@ -1,0 +1,9 @@
+<app-meetups-list class="my-meetups" [meetups]="meetups"></app-meetups-list>
+<router-outlet></router-outlet>
+<app-button
+  view="info"
+  class="new-meetup-btn"
+  [routerLink]="routePaths.CREATE_MEETUP"
+>
+  Создать митап
+</app-button>

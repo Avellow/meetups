@@ -1,0 +1,13 @@
+.bordered {
+  border: 1.8px solid var(--color-accent);
+  padding: 6px;
+}
+
+.action {
+    width: 30px;
+    height: 30px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}

@@ -1,0 +1,148 @@
+<form class="meetup-form" [formGroup]="form" id="form" (ngSubmit)="handleSubmit()">
+  <div class="fields">
+    <div class="field">
+      <label class="form-label field-name" for="name">Название:</label>
+      <input
+        class="form-control short"
+        [class.is-invalid]="!isValidField('name')"
+        id="name"
+        name="name"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="date-wrapper">
+      <div class="field date">
+        <label class="form-label field-name" for="date">Дата:</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="!isValidField('date')"
+          id="date"
+          type="date"
+          name="date"
+          [min]="getCurrentDay()"
+          formControlName="date"
+        />
+      </div>
+      <div class="field date">
+        <label class="form-label field-name" for="time">Время:</label>
+        <input
+          class="form-control"
+          id="time"
+          type="time"
+          name="time"
+          formControlName="time"
+          [class.is-invalid]="!isValidField('time')"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="location">Место:</label>
+      <input
+        class="form-control short"
+        [class.is-invalid]="!isValidField('location')"
+        id="location"
+        name="location"
+        formControlName="location"
+      />
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="duration">Длительность:</label>
+
+      <input
+        class="form-control"
+        [class.is-invalid]="!isValidField('duration')"
+        id="duration"
+        name="duration"
+        formControlName="duration"
+        type="number"
+      />
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="description"
+        >Подробное описание:</label
+      >
+      <textarea
+        class="form-control high"
+        [class.is-invalid]="!isValidField('description')"
+        id="description"
+        name="description"
+        formControlName="description"
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="target_audience"
+        >Целевая аудитория:</label
+      >
+      <textarea
+        class="form-control middle-height"
+        [class.is-invalid]="!isValidField('target_audience')"
+        id="target_audience"
+        name="target_audience"
+        placeholder="Аналитики, тестировщики, зумеры..."
+        formControlName="target_audience"
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="need_to_know"
+        >Что надо знать?</label
+      >
+      <textarea
+        class="form-control high"
+        [class.is-invalid]="!isValidField('need_to_know')"
+        id="need_to_know"
+        name="need_to_know"
+        placeholder="принципы строгой типизации"
+        formControlName="need_to_know"
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="will_happen">Что будет?</label>
+      <textarea
+        class="form-control high"
+        [class.is-invalid]="!isValidField('will_happen')"
+        id="will_happen"
+        name="will_happen"
+        placeholder="Научу готовить пиццу"
+        formControlName="will_happen"
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label class="form-label field-name" for="reason_to_come"
+        >Почему надо обязательно прийти?</label
+      >
+      <textarea
+        class="form-control middle-height"
+        [class.is-invalid]="!isValidField('reason_to_come')"
+        id="reason_to_come"
+        name="reason_to_come"
+        placeholder="Потому что гладиолус"
+        formControlName="reason_to_come"
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-btns">
+    <app-button view="warn" (btnClick)="handleDelete()" *ngIf="mode == 'edit'">
+      Удалить
+    </app-button>
+    <app-button view="secondary" (btnClick)="handleCancel()">
+      Отмена
+    </app-button>
+    <app-button
+      view="primary"
+      (btnClick)="handleSubmit()"
+      type="submit"
+      [isDisabled]="form.invalid"
+      [isDisabled]="form.pristine"
+    >
+      Сохранить
+    </app-button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<button
+  [type]="type"
+  [class]="['btn', view]"
+  (click)="onClick()"
+  [disabled]="isDisabled"
+>
+  <ng-content></ng-content>
+</button>
